@@ -194,15 +194,28 @@ function renderCharts(){
   const legend={...base,plugins:{legend:{display:true,position:'bottom',labels:{boxWidth:11,font:{size:11}}}}};
   const burg='#7b2439',gold='#c48b54',blue='#365d76',sage='#8a9b92';
   const commonY={beginAtZero:true,ticks:{precision:0},grid:{color:'#eef0f1'}};
-  // Uzun kategori isimleri satırlara bölünür; tam adlar veri içinde korunur.
-  const wrapLabel=(value,max=17)=>{
-    const words=String(value).split(/\s+/),lines=[];let line='';
-    for(const word of words){
-      if(line && (line+' '+word).length>max){lines.push(line);line=word;}
-      else line=line?line+' '+word:word;
-    }
-    if(line)lines.push(line);
-    return lines.length?lines:[''];
+  // Yalnızca grafik eksenlerinde kısa etiket kullanılır; özgün kayıtlar değişmez.
+  const shortLabel=value=>{
+    const v=String(value||'').trim();
+    const map={
+      'Elektrik-Elektronik Mühendisliği':'Elektrik-Elektronik',
+      'Bilgisayar Mühendisliği':'Bilgisayar Müh.',
+      'İnşaat Mühendisliği':'İnşaat Müh.',
+      'Makine Mühendisliği':'Makine Müh.',
+      'Gıda Mühendisliği':'Gıda Müh.',
+      'Yükseköğretim Kurumları BAP':'Üniversite BAP',
+      'Yükseköğretim Kurumları Bilimsel Araştırma Projeleri':'Üniversite BAP',
+      'Diğer kamu kuruluşları':'Diğer Kamu',
+      'Diğer Resmi Kurum ve Kuruluşlar':'Diğer Resmî Kurumlar',
+      'Diğer Resmi Kurum ve Kuruluşları':'Diğer Resmî Kurumlar',
+      'TÜBİTAK Projesi (Uluslararası)':'TÜBİTAK (Uluslararası)',
+      'Avrupa Birliği Kalkınma Bakanlığı destekli':'AB / Kalkınma Bakanlığı',
+      'Avrupa Birliği':'AB',
+      'Patent / Faydalı Model':'Patent / F. Model'
+    };
+    if(map[v])return map[v];
+    if(v.length<=22)return v;
+    return v.replace(/Mühendisliği/g,'Müh.').replace(/Kuruluşları/g,'Kur.').replace(/Araştırma Projesi/g,'Arş. Proj.').replace(/Uluslararası/g,'Ulusl.').replace(/Yükseköğretim/g,'YÖK').slice(0,25).trimEnd()+(v.length>35?'…':'');
   };
   const horizontalOptions={
     indexAxis:'y',
@@ -214,9 +227,9 @@ function renderCharts(){
   };
   const bar=(id,labels,data,opts={})=>draw(id,{
     type:'bar',
-    data:{labels:opts.horizontal?labels.map(x=>wrapLabel(x,opts.labelWidth||17)):labels,
+    data:{labels:opts.horizontal?labels.map(shortLabel):labels,
       datasets:[{label:opts.label||'Faaliyet',data,backgroundColor:opts.colors||burg,borderRadius:5}]},
-    options:{...base,...(opts.horizontal?horizontalOptions:{indexAxis:'x',scales:{x:{grid:{display:false}},y:commonY}})}
+    options:{...base,...(opts.horizontal?{...horizontalOptions,plugins:{...base.plugins,tooltip:{callbacks:{title:items=>labels[items[0]?.dataIndex]||''}}}}:{indexAxis:'x',scales:{x:{grid:{display:false}},y:commonY}})}
   });
   const donut=(id,labels,data)=>draw(id,{type:'doughnut',data:{labels,datasets:[{data,backgroundColor:colors,borderWidth:3,borderColor:'#fff'}]},options:{...legend,cutout:'66%'}});
   bar('yearChart',years,years.map(y=>filtered.filter(r=>r.year===y).length),{colors:years.map((_,i)=>i===years.length-1?burg:'#b9c8cc')});
@@ -228,7 +241,7 @@ function renderCharts(){
   const scopeCount=(arr,v)=>arr.filter(r=>scopeOf(r)===lower(v)).length;
   const typenames=['Makale','Bildiri','Kitap Bölümü','Proje','Patent / Faydalı Model'];
   const typeGroup=r=>/patent|faydalı model/i.test(r.type)?'Patent / Faydalı Model':r.type;
-  draw('scopeTypeChart',{type:'bar',data:{labels:typenames.map(x=>wrapLabel(x,17)),datasets:scopes.map((scope,i)=>({label:scope,data:typenames.map(t=>scopeCount(filtered.filter(r=>typeGroup(r)===t),scope)),backgroundColor:i?blue:gold,borderRadius:4}))},options:{...legend,indexAxis:'y',scales:{x:{stacked:true,beginAtZero:true,ticks:{precision:0}},y:{stacked:true,ticks:{autoSkip:false,padding:6,font:{size:10,lineHeight:1.2}}}}}});
+  draw('scopeTypeChart',{type:'bar',data:{labels:typenames.map(shortLabel),datasets:scopes.map((scope,i)=>({label:scope,data:typenames.map(t=>scopeCount(filtered.filter(r=>typeGroup(r)===t),scope)),backgroundColor:i?blue:gold,borderRadius:4}))},options:{...legend,indexAxis:'y',scales:{x:{stacked:true,beginAtZero:true,ticks:{precision:0}},y:{stacked:true,ticks:{autoSkip:false,padding:6,font:{size:10,lineHeight:1.2}}}}}});
   const projects=filtered.filter(r=>lower(r.type)==='proje');
   const projectKinds=sortCounts(projects.map(r=>r.index||'Belirtilmemiş'));
   bar('projectChart',projectKinds.map(x=>x[0]),projectKinds.map(x=>x[1]),{horizontal:true,labelWidth:34,colors:projectKinds.map((_,i)=>colors[i%colors.length]),label:'Proje'});
