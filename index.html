@@ -130,30 +130,18 @@ button:active{transform:scale(.98)}
 .collab-empty{font-size:12px;color:#78868d;line-height:1.5}
 @media(prefers-reduced-motion:reduce){.collab-pair-fill{animation:none}}
 
-/* Üniversite sitesi dar içerik alanı için masaüstü görünümü */
-@media (min-width:651px){
-  .wrap{padding-left:14px;padding-right:14px}
-  .stats{grid-template-columns:repeat(7,minmax(0,1fr))!important;gap:7px}
-  .stats .stat{padding:10px 7px;border-radius:9px}
-  .stats .stat .value{font-size:clamp(17px,2.2vw,24px);margin:4px 0}
-  .stats .stat .name{font-size:10px;line-height:1.2}
-  .all-charts{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:9px}
-  .all-charts .panel{padding:12px 10px;min-width:0}
-  .all-charts .panel h3{font-size:11px;line-height:1.35;min-height:30px}
-  .all-charts .chart-area{height:185px}
-  .results{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .result{padding:15px}
-  .result h3{font-size:13px}
-  .collab-body{grid-template-columns:1fr 1fr;gap:12px}
-  .filter-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+/* Uzun grafik etiketleri için artırılmış dikey alan */
+.all-charts .panel:has(#deptChart) .chart-area,
+.all-charts .panel:has(#projectChart) .chart-area,
+.all-charts .panel:has(#scopeTypeChart) .chart-area {height:305px;}
+.all-charts .panel:has(#deptChart),
+.all-charts .panel:has(#projectChart),
+.all-charts .panel:has(#scopeTypeChart) {overflow:visible;}
+@media(max-width:650px){
+ .all-charts .panel:has(#deptChart) .chart-area,
+ .all-charts .panel:has(#projectChart) .chart-area,
+ .all-charts .panel:has(#scopeTypeChart) .chart-area {height:340px;}
 }
-@media (max-width:650px){
-  .stats{grid-template-columns:repeat(2,minmax(0,1fr))!important}
-  .all-charts{grid-template-columns:1fr!important}
-}
-/* Netlify rozeti sayfa DOM'unda yer alıyorsa gizle; platform katmanıysa bu CSS etkilemez */
-.netlify-badge, #netlify-badge, [data-netlify-badge],
-a[href*="netlify.com"]:has(> img[alt*="Netlify"]){display:none!important}
 </style></head><body><header><div class="wrap"><div class="hero"><h1>Mühendislik ve Mimarlık Fakültesi<br><span>Akademik Faaliyetleri</span></h1><div class="source-note">ⓘ Akademik faaliyet bilgileri <strong>YÖK Akademik</strong> kayıtlarından derlenmiştir.</div></div></div></header><main class="wrap main"><div id="error"></div><div class="stats" id="stats"></div><div class="section-head"><div><h2>Akademik performansa bakış</h2><p>Filtrelere göre anlık güncellenen analizler</p></div></div><div class="all-charts"><div class="panel"><h3> Yıllara göre akademik üretkenlik</h3><div class="chart-area"><canvas id="yearChart"></canvas></div></div><div class="panel"><h3> Faaliyet türlerinin dağılımı</h3><div class="chart-area"><canvas id="typeChart"></canvas></div></div><div class="panel"><h3> Bölümlere göre faaliyet katkısı</h3><div class="chart-area"><canvas id="deptChart"></canvas></div></div><div class="panel"><h3> Makalelerin Q dağılımı</h3><div class="chart-area"><canvas id="qChart"></canvas></div></div>
  <div class="panel"><h3>Faaliyet türüne göre ulusal / uluslararası dağılım</h3><div class="chart-area"><canvas id="scopeTypeChart"></canvas></div></div>
  <div class="panel"><h3>Projelerin destek türlerine göre dağılımı</h3><div class="chart-area"><canvas id="projectChart"></canvas></div></div>
@@ -199,7 +187,30 @@ function renderCharts(){
   const legend={...base,plugins:{legend:{display:true,position:'bottom',labels:{boxWidth:11,font:{size:11}}}}};
   const burg='#7b2439',gold='#c48b54',blue='#365d76',sage='#8a9b92';
   const commonY={beginAtZero:true,ticks:{precision:0},grid:{color:'#eef0f1'}};
-  const bar=(id,labels,data,opts={})=>draw(id,{type:'bar',data:{labels,datasets:[{label:opts.label||'Faaliyet',data,backgroundColor:opts.colors||burg,borderRadius:5}]},options:{...base,indexAxis:opts.horizontal?'y':'x',scales:{x:{grid:{display:false}},y:commonY}}});
+  // Uzun kategori isimleri satırlara bölünür; tam adlar veri içinde korunur.
+  const wrapLabel=(value,max=17)=>{
+    const words=String(value).split(/\s+/),lines=[];let line='';
+    for(const word of words){
+      if(line && (line+' '+word).length>max){lines.push(line);line=word;}
+      else line=line?line+' '+word:word;
+    }
+    if(line)lines.push(line);
+    return lines.length?lines:[''];
+  };
+  const horizontalOptions={
+    indexAxis:'y',
+    layout:{padding:{left:5,right:12,top:4,bottom:4}},
+    scales:{
+      x:{beginAtZero:true,grid:{color:'#edf0f1'},ticks:{precision:0,font:{size:10}}},
+      y:{grid:{display:false},ticks:{autoSkip:false,padding:7,font:{size:10,lineHeight:1.2}}}
+    }
+  };
+  const bar=(id,labels,data,opts={})=>draw(id,{
+    type:'bar',
+    data:{labels:opts.horizontal?labels.map(x=>wrapLabel(x,opts.labelWidth||17)):labels,
+      datasets:[{label:opts.label||'Faaliyet',data,backgroundColor:opts.colors||burg,borderRadius:5}]},
+    options:{...base,...(opts.horizontal?horizontalOptions:{indexAxis:'x',scales:{x:{grid:{display:false}},y:commonY}})}
+  });
   const donut=(id,labels,data)=>draw(id,{type:'doughnut',data:{labels,datasets:[{data,backgroundColor:colors,borderWidth:3,borderColor:'#fff'}]},options:{...legend,cutout:'66%'}});
   bar('yearChart',years,years.map(y=>filtered.filter(r=>r.year===y).length),{colors:years.map((_,i)=>i===years.length-1?burg:'#b9c8cc')});
   donut('typeChart',types.map(x=>x[0]),types.map(x=>x[1]));
@@ -210,7 +221,7 @@ function renderCharts(){
   const scopeCount=(arr,v)=>arr.filter(r=>scopeOf(r)===lower(v)).length;
   const typenames=['Makale','Bildiri','Kitap Bölümü','Proje','Patent / Faydalı Model'];
   const typeGroup=r=>/patent|faydalı model/i.test(r.type)?'Patent / Faydalı Model':r.type;
-  draw('scopeTypeChart',{type:'bar',data:{labels:typenames,datasets:scopes.map((scope,i)=>({label:scope,data:typenames.map(t=>scopeCount(filtered.filter(r=>typeGroup(r)===t),scope)),backgroundColor:i?blue:gold,borderRadius:4}))},options:{...legend,indexAxis:'y',scales:{x:{stacked:true,beginAtZero:true,ticks:{precision:0}},y:{stacked:true}}}});
+  draw('scopeTypeChart',{type:'bar',data:{labels:typenames.map(x=>wrapLabel(x,17)),datasets:scopes.map((scope,i)=>({label:scope,data:typenames.map(t=>scopeCount(filtered.filter(r=>typeGroup(r)===t),scope)),backgroundColor:i?blue:gold,borderRadius:4}))},options:{...legend,indexAxis:'y',scales:{x:{stacked:true,beginAtZero:true,ticks:{precision:0}},y:{stacked:true,ticks:{autoSkip:false,padding:6,font:{size:10,lineHeight:1.2}}}}}});
   const projects=filtered.filter(r=>lower(r.type)==='proje');
   const projectKinds=sortCounts(projects.map(r=>r.index||'Belirtilmemiş'));
   bar('projectChart',projectKinds.map(x=>x[0]),projectKinds.map(x=>x[1]),{horizontal:true,colors:projectKinds.map((_,i)=>colors[i%colors.length]),label:'Proje'});
