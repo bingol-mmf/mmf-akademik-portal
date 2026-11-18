@@ -130,12 +130,7 @@ button:active{transform:scale(.98)}
 .collab-empty{font-size:12px;color:#78868d;line-height:1.5}
 @media(prefers-reduced-motion:reduce){.collab-pair-fill{animation:none}}
 
-/* Grafikler her zaman üç sütunlu orijinal düzende kalır. */
-.all-charts .panel:has(#projectChart){grid-column:auto;overflow:hidden}
-.all-charts .panel:has(#projectChart) .chart-area{height:340px}
-.all-charts .panel:has(#deptChart) .chart-area{height:240px}
-.all-charts .panel:has(#scopeTypeChart) .chart-area{height:240px}
-@media(max-width:650px){.all-charts .panel:has(#projectChart) .chart-area{height:350px}}
+/* Proje kartı diğer grafik kartlarıyla aynı ölçüdedir. */
 </style></head><body><header><div class="wrap"><div class="hero"><h1>Mühendislik ve Mimarlık Fakültesi<br><span>Akademik Faaliyetleri</span></h1><div class="source-note">ⓘ Akademik faaliyet bilgileri <strong>YÖK Akademik</strong> kayıtlarından derlenmiştir.</div></div></div></header><main class="wrap main"><div id="error"></div><div class="stats" id="stats"></div><div class="section-head"><div><h2>Akademik performansa bakış</h2><p>Filtrelere göre anlık güncellenen analizler</p></div></div><div class="all-charts"><div class="panel"><h3> Yıllara göre akademik üretkenlik</h3><div class="chart-area"><canvas id="yearChart"></canvas></div></div><div class="panel"><h3> Faaliyet türlerinin dağılımı</h3><div class="chart-area"><canvas id="typeChart"></canvas></div></div><div class="panel"><h3> Bölümlere göre faaliyet katkısı</h3><div class="chart-area"><canvas id="deptChart"></canvas></div></div><div class="panel"><h3> Makalelerin Q dağılımı</h3><div class="chart-area"><canvas id="qChart"></canvas></div></div>
  <div class="panel"><h3>Faaliyet türüne göre ulusal / uluslararası dağılım</h3><div class="chart-area"><canvas id="scopeTypeChart"></canvas></div></div>
  <div class="panel"><h3>Projelerin destek türlerine göre dağılımı</h3><div class="chart-area"><canvas id="projectChart"></canvas></div></div>
