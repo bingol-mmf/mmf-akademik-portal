@@ -130,25 +130,12 @@ button:active{transform:scale(.98)}
 .collab-empty{font-size:12px;color:#78868d;line-height:1.5}
 @media(prefers-reduced-motion:reduce){.collab-pair-fill{animation:none}}
 
-/* Uzun grafik etiketleri için artırılmış dikey alan */
-.all-charts .panel:has(#deptChart) .chart-area,
-.all-charts .panel:has(#projectChart) .chart-area,
-.all-charts .panel:has(#scopeTypeChart) .chart-area {height:305px;}
-.all-charts .panel:has(#deptChart),
-.all-charts .panel:has(#projectChart),
-.all-charts .panel:has(#scopeTypeChart) {overflow:visible;}
-@media(max-width:650px){
- .all-charts .panel:has(#deptChart) .chart-area,
- .all-charts .panel:has(#projectChart) .chart-area,
- .all-charts .panel:has(#scopeTypeChart) .chart-area {height:340px;}
-}
-/* Uzun kategori adları: geniş kart ve her satıra yeterli yükseklik. */
-.all-charts .panel:has(#projectChart){grid-column:span 2;overflow:hidden}
-.all-charts .panel:has(#projectChart) .chart-area{height:590px}
-.all-charts .panel:has(#deptChart) .chart-area{height:310px}
-.all-charts .panel:has(#scopeTypeChart) .chart-area{height:290px}
-@media(max-width:1100px){.all-charts .panel:has(#projectChart){grid-column:span 2}}
-@media(max-width:650px){.all-charts .panel:has(#projectChart){grid-column:span 1}.all-charts .panel:has(#projectChart) .chart-area{height:680px}}
+/* Grafikler her zaman üç sütunlu orijinal düzende kalır. */
+.all-charts .panel:has(#projectChart){grid-column:auto;overflow:hidden}
+.all-charts .panel:has(#projectChart) .chart-area{height:340px}
+.all-charts .panel:has(#deptChart) .chart-area{height:240px}
+.all-charts .panel:has(#scopeTypeChart) .chart-area{height:240px}
+@media(max-width:650px){.all-charts .panel:has(#projectChart) .chart-area{height:350px}}
 </style></head><body><header><div class="wrap"><div class="hero"><h1>Mühendislik ve Mimarlık Fakültesi<br><span>Akademik Faaliyetleri</span></h1><div class="source-note">ⓘ Akademik faaliyet bilgileri <strong>YÖK Akademik</strong> kayıtlarından derlenmiştir.</div></div></div></header><main class="wrap main"><div id="error"></div><div class="stats" id="stats"></div><div class="section-head"><div><h2>Akademik performansa bakış</h2><p>Filtrelere göre anlık güncellenen analizler</p></div></div><div class="all-charts"><div class="panel"><h3> Yıllara göre akademik üretkenlik</h3><div class="chart-area"><canvas id="yearChart"></canvas></div></div><div class="panel"><h3> Faaliyet türlerinin dağılımı</h3><div class="chart-area"><canvas id="typeChart"></canvas></div></div><div class="panel"><h3> Bölümlere göre faaliyet katkısı</h3><div class="chart-area"><canvas id="deptChart"></canvas></div></div><div class="panel"><h3> Makalelerin Q dağılımı</h3><div class="chart-area"><canvas id="qChart"></canvas></div></div>
  <div class="panel"><h3>Faaliyet türüne göre ulusal / uluslararası dağılım</h3><div class="chart-area"><canvas id="scopeTypeChart"></canvas></div></div>
  <div class="panel"><h3>Projelerin destek türlerine göre dağılımı</h3><div class="chart-area"><canvas id="projectChart"></canvas></div></div>
@@ -197,26 +184,26 @@ function renderCharts(){
   // Yalnızca grafik eksenlerinde kısa etiket kullanılır; özgün kayıtlar değişmez.
   const shortLabel=value=>{
     const v=String(value||'').trim();
-    const map={
-      'Elektrik-Elektronik Mühendisliği':'Elektrik-Elektronik',
-      'Bilgisayar Mühendisliği':'Bilgisayar Müh.',
-      'İnşaat Mühendisliği':'İnşaat Müh.',
-      'Makine Mühendisliği':'Makine Müh.',
-      'Gıda Mühendisliği':'Gıda Müh.',
-      'Yükseköğretim Kurumları BAP':'Üniversite BAP',
-      'Yükseköğretim Kurumları Bilimsel Araştırma Projeleri':'Üniversite BAP',
-      'Diğer kamu kuruluşları':'Diğer Kamu',
-      'Diğer Resmi Kurum ve Kuruluşlar':'Diğer Resmî Kurumlar',
-      'Diğer Resmi Kurum ve Kuruluşları':'Diğer Resmî Kurumlar',
-      'TÜBİTAK Projesi (Uluslararası)':'TÜBİTAK (Uluslararası)',
-      'Avrupa Birliği Kalkınma Bakanlığı destekli':'AB / Kalkınma Bakanlığı',
-      'Avrupa Birliği':'AB',
-      'Patent / Faydalı Model':'Patent / F. Model'
-    };
-    if(map[v])return map[v];
-    if(v.length<=22)return v;
-    return v.replace(/Mühendisliği/g,'Müh.').replace(/Kuruluşları/g,'Kur.').replace(/Araştırma Projesi/g,'Arş. Proj.').replace(/Uluslararası/g,'Ulusl.').replace(/Yükseköğretim/g,'YÖK').slice(0,25).trimEnd()+(v.length>35?'…':'');
+    const n=v.toLocaleLowerCase('tr-TR');
+    if(n.includes('elektrik') && n.includes('elektronik'))return 'Elektrik-Elektronik';
+    if(n.includes('bilgisayar') && n.includes('mühendis'))return 'Bilgisayar Müh.';
+    if(n.includes('inşaat') && n.includes('mühendis'))return 'İnşaat Müh.';
+    if(n.includes('makine') && n.includes('mühendis'))return 'Makine Müh.';
+    if(n.includes('gıda') && n.includes('mühendis'))return 'Gıda Müh.';
+    if(n.includes('yükseköğretim') && (n.includes('bap')||n.includes('araştırma')))return 'Üniversite BAP';
+    if(n.includes('diğer') && n.includes('resmi'))return 'Diğer Resmî Kur.';
+    if(n.includes('diğer') && n.includes('kamu'))return 'Diğer Kamu Kur.';
+    if(n.includes('kalkınma bakanlığı'))return 'Kalkınma Bak.';
+    if(n.includes('avrupa birliği'))return 'AB';
+    if(n.includes('uluslararası') && n.includes('diğer'))return 'Diğer (Ulusl.)';
+    if(n.includes('tübitak') && n.includes('proje'))return 'TÜBİTAK Projesi';
+    if(n.includes('araştırma projesi'))return 'Araştırma Proj.';
+    if(n.includes('patent') && n.includes('faydalı'))return 'Patent / F. Model';
+    if(v.length<=20)return v;
+    const result=v.replace(/Mühendisliği/g,'Müh.').replace(/Kuruluşları/g,'Kur.').replace(/Araştırma/g,'Arş.').replace(/Uluslararası/g,'Ulusl.');
+    return result.length>20?result.slice(0,19).trimEnd()+'…':result;
   };
+
   const horizontalOptions={
     indexAxis:'y',
     layout:{padding:{left:5,right:12,top:4,bottom:4}},
