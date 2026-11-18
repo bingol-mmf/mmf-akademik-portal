@@ -142,6 +142,13 @@ button:active{transform:scale(.98)}
  .all-charts .panel:has(#projectChart) .chart-area,
  .all-charts .panel:has(#scopeTypeChart) .chart-area {height:340px;}
 }
+/* Uzun kategori adları: geniş kart ve her satıra yeterli yükseklik. */
+.all-charts .panel:has(#projectChart){grid-column:span 2;overflow:hidden}
+.all-charts .panel:has(#projectChart) .chart-area{height:590px}
+.all-charts .panel:has(#deptChart) .chart-area{height:310px}
+.all-charts .panel:has(#scopeTypeChart) .chart-area{height:290px}
+@media(max-width:1100px){.all-charts .panel:has(#projectChart){grid-column:span 2}}
+@media(max-width:650px){.all-charts .panel:has(#projectChart){grid-column:span 1}.all-charts .panel:has(#projectChart) .chart-area{height:680px}}
 </style></head><body><header><div class="wrap"><div class="hero"><h1>Mühendislik ve Mimarlık Fakültesi<br><span>Akademik Faaliyetleri</span></h1><div class="source-note">ⓘ Akademik faaliyet bilgileri <strong>YÖK Akademik</strong> kayıtlarından derlenmiştir.</div></div></div></header><main class="wrap main"><div id="error"></div><div class="stats" id="stats"></div><div class="section-head"><div><h2>Akademik performansa bakış</h2><p>Filtrelere göre anlık güncellenen analizler</p></div></div><div class="all-charts"><div class="panel"><h3> Yıllara göre akademik üretkenlik</h3><div class="chart-area"><canvas id="yearChart"></canvas></div></div><div class="panel"><h3> Faaliyet türlerinin dağılımı</h3><div class="chart-area"><canvas id="typeChart"></canvas></div></div><div class="panel"><h3> Bölümlere göre faaliyet katkısı</h3><div class="chart-area"><canvas id="deptChart"></canvas></div></div><div class="panel"><h3> Makalelerin Q dağılımı</h3><div class="chart-area"><canvas id="qChart"></canvas></div></div>
  <div class="panel"><h3>Faaliyet türüne göre ulusal / uluslararası dağılım</h3><div class="chart-area"><canvas id="scopeTypeChart"></canvas></div></div>
  <div class="panel"><h3>Projelerin destek türlerine göre dağılımı</h3><div class="chart-area"><canvas id="projectChart"></canvas></div></div>
@@ -214,7 +221,7 @@ function renderCharts(){
   const donut=(id,labels,data)=>draw(id,{type:'doughnut',data:{labels,datasets:[{data,backgroundColor:colors,borderWidth:3,borderColor:'#fff'}]},options:{...legend,cutout:'66%'}});
   bar('yearChart',years,years.map(y=>filtered.filter(r=>r.year===y).length),{colors:years.map((_,i)=>i===years.length-1?burg:'#b9c8cc')});
   donut('typeChart',types.map(x=>x[0]),types.map(x=>x[1]));
-  bar('deptChart',depts.map(x=>x[0]),depts.map(x=>x[1]),{horizontal:true,colors:colors});
+  bar('deptChart',depts.map(x=>x[0]),depts.map(x=>x[1]),{horizontal:true,labelWidth:26,colors:colors});
   donut('qChart',qs,qcount);
   const scopes=['Ulusal','Uluslararası'];
   const scopeOf=r=>lower(r.scope);
@@ -224,7 +231,7 @@ function renderCharts(){
   draw('scopeTypeChart',{type:'bar',data:{labels:typenames.map(x=>wrapLabel(x,17)),datasets:scopes.map((scope,i)=>({label:scope,data:typenames.map(t=>scopeCount(filtered.filter(r=>typeGroup(r)===t),scope)),backgroundColor:i?blue:gold,borderRadius:4}))},options:{...legend,indexAxis:'y',scales:{x:{stacked:true,beginAtZero:true,ticks:{precision:0}},y:{stacked:true,ticks:{autoSkip:false,padding:6,font:{size:10,lineHeight:1.2}}}}}});
   const projects=filtered.filter(r=>lower(r.type)==='proje');
   const projectKinds=sortCounts(projects.map(r=>r.index||'Belirtilmemiş'));
-  bar('projectChart',projectKinds.map(x=>x[0]),projectKinds.map(x=>x[1]),{horizontal:true,colors:projectKinds.map((_,i)=>colors[i%colors.length]),label:'Proje'});
+  bar('projectChart',projectKinds.map(x=>x[0]),projectKinds.map(x=>x[1]),{horizontal:true,labelWidth:34,colors:projectKinds.map((_,i)=>colors[i%colors.length]),label:'Proje'});
   const papers=filtered.filter(r=>lower(r.type)==='bildiri');
   const paperKinds=sortCounts(papers.map(r=>r.index||'Belirtilmemiş'));
   donut('paperChart',paperKinds.map(x=>x[0]),paperKinds.map(x=>x[1]));
