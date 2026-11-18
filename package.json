@@ -1,0 +1,1 @@
+{"name":"bingol-mmf-akademik-portal","version":"1.0.0","private":true,"scripts":{"build":"node -e \"console.log('Static portal ready')\""},"dependencies":{"xlsx":"^0.18.5"}}

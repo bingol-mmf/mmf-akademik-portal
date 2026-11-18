@@ -1,0 +1,263 @@
+<!doctype html><html lang="tr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#273a43"><title>Akademik Faaliyetler | Bingöl Üniversitesi Mühendislik ve Mimarlık Fakültesi</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"><script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script><style>
+:root{--navy:#101a38;--ink:#1a2745;--muted:#7c8aa4;--line:#e9edf6;--purple:#7656f8;--cyan:#0ac7d5;--orange:#ffab4d;--bg:#f6f8fe}*{box-sizing:border-box}body{margin:0;background:var(--bg);font-family:'DM Sans',sans-serif;color:var(--ink)}button,input,select{font:inherit}button{cursor:pointer}header{background:radial-gradient(ellipse at 85% 10%,#34458c 0,transparent 44%),linear-gradient(135deg,#101a38,#1d2854 65%,#24275c);color:white;overflow:hidden;position:relative}header:after{content:'';position:absolute;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,#7954ff4d,transparent 70%);right:-80px;top:-160px;pointer-events:none;animation:float 9s ease-in-out infinite alternate}@keyframes float{to{transform:translate(-60px,70px)}}.wrap{max-width:1370px;margin:auto;padding:0 28px}.top{display:flex;justify-content:flex-end;align-items:center;padding:15px 0 0;gap:20px}.brand{display:flex;align-items:center;gap:13px;font-family:'Plus Jakarta Sans';font-weight:800;font-size:15px}.logo{width:42px;height:42px;border-radius:14px;background:linear-gradient(135deg,#10d4d4,#8864ff);display:grid;place-items:center;font-size:23px}.tag{border:1px solid #ffffff40;border-radius:30px;padding:8px 13px;color:#cbd5f9;font-size:12px}.hero{padding:19px 0 77px;position:relative;z-index:1}.eyebrow{font-size:12px;letter-spacing:3px;color:#76d9eb;font-weight:800}.hero h1{font:800 clamp(26px,3vw,39px)/1.2 'Plus Jakarta Sans';max-width:860px;margin:9px 0}.hero h1 span{background:linear-gradient(90deg,#60e4ec,#b1a0ff,#ffbe86);background-clip:text;color:transparent}.hero p{max-width:850px;color:#c1cbea;line-height:1.5;font-size:13px;margin:9px 0 12px}.orb{position:absolute;right:8%;top:5px;width:120px;height:120px;opacity:.3;border:1px solid #ffffff20;border-radius:50%;box-shadow:0 0 0 35px #ffffff08,0 0 0 75px #ffffff05;animation:rotate 20s linear infinite}@keyframes rotate{to{transform:rotate(360deg)}}.orb:after{content:'';position:absolute;width:25px;height:25px;background:#37d9ed;box-shadow:0 0 30px #37d9ed;border-radius:50%;top:24px;right:32px}.main{margin-top:-43px;position:relative;z-index:3}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:17px}.stat,.panel,.filters,.result{background:white;border:1px solid var(--line);border-radius:20px;box-shadow:0 12px 32px #17255409}.stat{padding:23px;position:relative;overflow:hidden;transition:transform .3s,box-shadow .3s}.stat:hover,.result:hover{transform:translateY(-4px);box-shadow:0 18px 45px #293e7215}.stat .icon{font-size:25px}.stat .value{font:800 32px 'Plus Jakarta Sans';margin:10px 0 4px}.stat .name{color:var(--muted);font-size:13px}.stat:after{content:'';position:absolute;right:-25px;bottom:-30px;width:110px;height:110px;border-radius:50%;background:var(--accent);opacity:.07}.section-head{display:flex;justify-content:space-between;align-items:end;margin:36px 0 16px;gap:15px}.section-head h2{font:800 22px 'Plus Jakarta Sans';margin:0}.section-head p{color:var(--muted);font-size:13px;margin:5px 0 0}.charts{display:grid;grid-template-columns:1.55fr 1fr;gap:18px}.panel{padding:24px;min-width:0}.panel h3{font-size:15px;margin:0 0 18px}.chart-area{height:280px;position:relative}.second{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:18px}.filters{padding:23px}.filter-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:13px}.field label{display:block;font-size:11px;font-weight:800;color:#687793;margin-bottom:8px}.field select,.field input{width:100%;border:1px solid #e1e7f2;border-radius:12px;padding:12px;background:#f9fbff;color:#243151;outline:none;min-width:0}.field select:focus,.field input:focus{border-color:#8265ff;box-shadow:0 0 0 3px #8265ff1a}.search-row{display:flex;gap:13px;margin-top:13px}.search-row .field{flex:1}.reset{border:0;border-radius:12px;padding:0 22px;background:#eeeaff;color:#6746d9;font-weight:800}.results-meta{display:flex;justify-content:space-between;align-items:center;gap:12px;color:#78859c;font-size:13px;margin:18px 0}.results{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}.result{padding:22px;transition:transform .3s,box-shadow .3s;animation:rise .45s both}@keyframes rise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}.result-head{display:flex;gap:12px;justify-content:space-between}.result h3{font:800 15px/1.5 'Plus Jakarta Sans';margin:0 0 13px}.link{width:37px;height:37px;border-radius:12px;background:#f0ebff;color:#6b4ce6;display:grid;place-items:center;text-decoration:none;flex-shrink:0;font-size:19px}.link:hover{background:#6b4ce6;color:white}.authors{font-size:12px;color:#687793;line-height:1.65}.chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:17px}.chip{padding:6px 10px;background:#f0f4fa;border-radius:30px;font-size:11px;font-weight:700;color:#53627f}.chip.q{background:#e9f8f3;color:#10926d}.chip.idx{background:#edeaff;color:#7256dd}.pager{display:flex;justify-content:center;align-items:center;gap:12px;margin:28px 0 60px}.pager button{border:1px solid #e1e6f0;background:white;border-radius:11px;padding:11px 18px}.pager button:disabled{opacity:.4;cursor:default}.status{font-size:12px;color:#a9b9d5;display:flex;gap:8px;align-items:center}.dot{height:8px;width:8px;background:#33d6a1;border-radius:50%}.dot.warn{background:#ffb65b}footer{text-align:center;color:#8a98b0;padding:25px;font-size:12px}#error{display:none;background:#fff4e5;color:#9a5711;padding:12px 16px;border-radius:12px;margin:18px 0;font-size:13px}@media(max-width:1000px){.stats{grid-template-columns:repeat(2,1fr)}.charts,.second{grid-template-columns:1fr}.filter-grid{grid-template-columns:repeat(2,1fr)}.orb{opacity:.25}}@media(max-width:650px){.wrap{padding:0 16px}.top{padding:18px 0}.tag{display:none}.orb{display:none}.hero{padding:20px 0 68px}.stats{gap:10px}.stat{padding:16px}.stat .value{font-size:25px}.filter-grid,.results{grid-template-columns:1fr}.search-row{flex-direction:column}.reset{padding:12px}.section-head h2{font-size:19px}.panel{padding:16px}}@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}}
+.source-note{display:inline-flex;align-items:center;gap:7px;color:#c6d5f2;font-size:12px;margin:0 0 10px}
+:root{--navy:#273a43;--ink:#263640;--muted:#647480;--line:#e1e5e5;--purple:#7b2439;--cyan:#557a87;--orange:#c48b54;--bg:#f5f6f5}
+body{background:var(--bg)}
+header{background:linear-gradient(112deg,#243841 0%,#344a50 65%,#6d3744 100%);border-bottom:3px solid #b88b62}
+header:after{display:none}
+.top,.orb{display:none!important}
+.hero{padding:21px 0 37px}
+.hero h1{font:700 clamp(24px,2.6vw,35px)/1.15 'Plus Jakarta Sans';margin:0 0 7px;max-width:none;letter-spacing:-.7px}
+.hero h1 span{background:none;color:#e9c3a1}
+.hero p{font-size:12px;margin:0 0 8px;color:#e1e7e7}
+.source-note{font-size:11px;color:#e2e5e3;margin:0 0 6px}
+.status{font-size:10px}
+.main{margin-top:-13px}
+.stats{grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.stat,.panel,.filters,.result{border-radius:12px;box-shadow:0 5px 20px #2438410b}
+.stat{padding:17px 19px 15px;border-top:3px solid #7b2439}
+.stat:nth-child(2n){border-top-color:#365d76}
+.stat:nth-child(3n){border-top-color:#c48b54}
+.stat:nth-child(4n){border-top-color:#8a9b92}
+.stat .value{font-size:29px;margin:5px 0 4px}
+.stat .name{font-size:12px;font-weight:600}
+.stat:after{display:none}
+.stat-marker{height:3px;width:28px;background:#c48b54;border-radius:3px}
+.section-head{margin:24px 0 12px}
+.section-head h2{font-size:20px;font-weight:700}
+.panel{padding:20px}
+.panel h3{font-size:14px;font-weight:700}
+.link{background:#f7eeee;color:#7b2439}
+.link:hover{background:#7b2439}
+.chip.idx{background:#f4e9ed;color:#7b2439}
+.chip.q{background:#e8f0ee;color:#2e6858}
+.field select:focus,.field input:focus{border-color:#7b2439;box-shadow:0 0 0 3px #7b24391c}
+.reset{background:#f4e8eb;color:#7b2439}
+@media(max-width:800px){.stats{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:650px){.hero{padding:18px 0 28px}.hero h1{font-size:24px}.main{margin-top:-8px}.stat{padding:13px}.stat .value{font-size:24px}}
+
+/* Kurumsal hareket sistemi: veri odakli, erisilebilir ve hafif */
+header{position:relative;overflow:hidden}
+header::before{content:"";position:absolute;inset:-80% -20%;pointer-events:none;background:linear-gradient(115deg,transparent 37%,rgba(238,203,167,.12) 49%,transparent 61%);animation:headerShimmer 12s ease-in-out infinite}
+@keyframes headerShimmer{0%,15%{transform:translateX(-65%)}65%,100%{transform:translateX(65%)}}
+.hero{padding:13px 0 16px;position:relative}
+.source-note{animation:softEnter .7s ease both}
+.status{animation:softEnter .85s .12s ease both}
+@keyframes softEnter{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.stats .stat{animation:cardReveal .65s cubic-bezier(.2,.7,.25,1) both;transform-origin:center bottom;will-change:transform}
+.stats .stat:nth-child(1){animation-delay:.03s}.stats .stat:nth-child(2){animation-delay:.09s}.stats .stat:nth-child(3){animation-delay:.15s}.stats .stat:nth-child(4){animation-delay:.21s}.stats .stat:nth-child(5){animation-delay:.27s}.stats .stat:nth-child(6){animation-delay:.33s}.stats .stat:nth-child(7){animation-delay:.39s}.stats .stat:nth-child(8){animation-delay:.45s}.stats .stat:nth-child(9){animation-delay:.51s}.stats .stat:nth-child(10){animation-delay:.57s}.stats .stat:nth-child(11){animation-delay:.63s}.stats .stat:nth-child(12){animation-delay:.69s}
+@keyframes cardReveal{from{opacity:0;transform:translateY(20px) scale(.97)}to{opacity:1;transform:translateY(0) scale(1)}}
+.stat:hover{transform:translateY(-6px);box-shadow:0 16px 36px rgba(39,58,67,.13);border-color:#c8a18c}
+.stat-marker{transition:width .5s ease,background .3s ease}.stat:hover .stat-marker{width:58px;background:#7b2439}
+.panel{animation:softEnter .8s .22s ease both;transition:box-shadow .3s ease,transform .3s ease}.panel:hover{box-shadow:0 14px 38px rgba(39,58,67,.10)}
+.result{animation:softEnter .42s ease both;transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease}.result:hover{border-color:#d9c3c3}
+button,select,.link{transition:background-color .22s ease,color .22s ease,transform .22s ease,box-shadow .22s ease}
+button:active{transform:scale(.98)}
+@media(prefers-reduced-motion:reduce){header::before,.source-note,.status,.stats .stat,.panel,.result{animation:none!important}button,select,.link,.stat,.panel,.result,.stat-marker{transition:none!important}}
+
+.analysis-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin:0 0 26px}
+.analysis-grid .panel{min-width:0}
+.analysis-grid .chart-area{height:285px}
+.chart-hint{font-size:11px;color:#647480;margin:4px 0 8px}
+.patent-details{display:flex;flex-wrap:wrap;gap:7px;margin-top:8px}
+.patent-person{display:inline-flex;align-items:center;padding:6px 10px;background:#f4e8eb;border:1px solid #e6cbd2;border-radius:8px;font-size:11px;color:#672b3a}
+@media(max-width:780px){.analysis-grid{grid-template-columns:1fr}.analysis-grid .chart-area{height:265px}}
+
+/* Compact, professional analytics layout */
+.analysis-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.analysis-grid .chart-area{height:205px}
+.charts .chart-area,.second .chart-area{height:235px}
+.analysis-grid .panel{padding:15px 18px}
+.analysis-grid .panel h3{margin:0 0 8px}
+.section-head{margin:18px 0 10px}
+.stats{grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.stat{padding:13px 16px}
+.stat .value{font-size:27px}
+.chart-hint{margin:0 0 4px}
+.patent-details{max-height:72px;overflow:auto}
+@media(max-width:780px){.analysis-grid{grid-template-columns:1fr}.analysis-grid .chart-area{height:225px}}
+
+/* Yedi kompakt gösterge ve üç sütunlu analiz panosu */
+.stats{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:9px}
+.stats .stat{min-width:0;padding:12px 10px;border-radius:10px}
+.stats .stat .value{font-size:clamp(19px,1.7vw,27px);white-space:nowrap}
+.stats .stat .name{font-size:11px;line-height:1.3;overflow-wrap:anywhere}
+.all-charts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px;margin-top:12px}
+.all-charts .panel{min-width:0;padding:15px 16px}
+.all-charts .panel h3{font-size:13px;line-height:1.4;margin:0 0 10px}
+.all-charts .chart-area{height:205px}
+.all-charts .chart-hint{font-size:10px}
+@media(max-width:1100px){.stats{grid-template-columns:repeat(4,minmax(0,1fr))}.all-charts{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:650px){.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.all-charts{grid-template-columns:1fr}.all-charts .chart-area{height:220px}}
+
+.collab-panel{margin-top:16px;background:#fff;border:1px solid #e1e5e5;border-radius:14px;padding:20px 23px;box-shadow:0 5px 20px #2438410b;animation:rise .55s both}
+.collab-heading{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:16px}
+.collab-heading h2{font:700 18px 'Plus Jakarta Sans';color:#273a43;margin:0 0 5px}
+.collab-heading p{font-size:12px;color:#647480;margin:0}
+.collab-label{font-size:10px;letter-spacing:.6px;text-transform:uppercase;color:#7b2439;background:#f6edef;border-radius:7px;padding:8px 10px;font-weight:700}
+.collab-body{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:center}
+.collab-summary{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}
+.collab-metric{border-left:3px solid #7b2439;padding:7px 12px;background:#faf8f8;border-radius:0 8px 8px 0;transition:transform .25s}
+.collab-metric:nth-child(2){border-left-color:#365d76}.collab-metric:nth-child(3){border-left-color:#c48b54}
+.collab-metric:hover{transform:translateY(-3px)}
+.collab-metric strong{display:block;font:750 26px 'Plus Jakarta Sans';color:#273a43;margin-bottom:6px}
+.collab-metric span{font-size:11px;line-height:1.45;color:#647480}
+.collab-visual-title{font-size:12px;font-weight:700;color:#273a43;margin-bottom:10px}
+.collab-bars{display:grid;gap:7px}
+.collab-bar{display:grid;grid-template-columns:minmax(80px,135px) 1fr 32px;align-items:center;gap:10px;font-size:11px;color:#465761}
+.collab-track{height:9px;background:#eef0f0;border-radius:10px;overflow:hidden}
+.collab-fill{height:100%;width:var(--bar-width);background:linear-gradient(90deg,#7b2439,#c48b54);border-radius:10px;animation:collabGrow .8s ease-out both;transform-origin:left}
+@keyframes collabGrow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.collab-count{text-align:right;font-weight:700;font-variant-numeric:tabular-nums}
+.collab-footnote{font-size:10px;color:#75838b;line-height:1.45;margin:10px 0 0}
+@media(max-width:900px){.collab-body{grid-template-columns:1fr;gap:17px}}
+@media(max-width:540px){.collab-panel{padding:16px}.collab-label{display:none}.collab-summary{gap:5px}.collab-metric{padding:6px}.collab-metric strong{font-size:20px}.collab-metric span{font-size:10px}.collab-bar{grid-template-columns:90px 1fr 28px;gap:6px}}
+@media(prefers-reduced-motion:reduce){.collab-panel,.collab-fill{animation:none}}
+
+/* Dokuz grafik kartı: 3 sütun x 3 satır; iş birliği son kartta */
+.collab-chart-card{display:flex;flex-direction:column}
+.collab-chart-card .chart-hint{margin:0 0 10px;font-size:10px;color:#73818a;line-height:1.4}
+.collab-pairs{display:flex;flex-direction:column;gap:10px;flex:1;justify-content:center;min-height:0}
+.collab-pair{min-width:0}
+.collab-pair-head{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:10px;color:#354750;margin-bottom:5px}
+.collab-pair-name{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0;font-weight:600}
+.collab-pair-head strong{font-size:12px;color:#7b2439;font-variant-numeric:tabular-nums}
+.collab-connector{color:#b78b65;padding:0 2px}
+.collab-pair-track{height:5px;background:#eef0f1;border-radius:8px;overflow:hidden}
+.collab-pair-fill{height:100%;width:var(--bar-width);background:linear-gradient(90deg,#7b2439,#c48b54);border-radius:8px;transform-origin:left;animation:collabGrow .7s ease-out both}
+.collab-mini-footer{font-size:10px;color:#78868d;border-top:1px solid #eef0f1;padding-top:8px;margin-top:10px}
+.collab-empty{font-size:12px;color:#78868d;line-height:1.5}
+@media(prefers-reduced-motion:reduce){.collab-pair-fill{animation:none}}
+
+/* Üniversite sitesi dar içerik alanı için masaüstü görünümü */
+@media (min-width:651px){
+  .wrap{padding-left:14px;padding-right:14px}
+  .stats{grid-template-columns:repeat(7,minmax(0,1fr))!important;gap:7px}
+  .stats .stat{padding:10px 7px;border-radius:9px}
+  .stats .stat .value{font-size:clamp(17px,2.2vw,24px);margin:4px 0}
+  .stats .stat .name{font-size:10px;line-height:1.2}
+  .all-charts{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:9px}
+  .all-charts .panel{padding:12px 10px;min-width:0}
+  .all-charts .panel h3{font-size:11px;line-height:1.35;min-height:30px}
+  .all-charts .chart-area{height:185px}
+  .results{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .result{padding:15px}
+  .result h3{font-size:13px}
+  .collab-body{grid-template-columns:1fr 1fr;gap:12px}
+  .filter-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+}
+@media (max-width:650px){
+  .stats{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+  .all-charts{grid-template-columns:1fr!important}
+}
+/* Netlify rozeti sayfa DOM'unda yer alıyorsa gizle; platform katmanıysa bu CSS etkilemez */
+.netlify-badge, #netlify-badge, [data-netlify-badge],
+a[href*="netlify.com"]:has(> img[alt*="Netlify"]){display:none!important}
+</style></head><body><header><div class="wrap"><div class="hero"><h1>Mühendislik ve Mimarlık Fakültesi<br><span>Akademik Faaliyetleri</span></h1><div class="source-note">ⓘ Akademik faaliyet bilgileri <strong>YÖK Akademik</strong> kayıtlarından derlenmiştir.</div></div></div></header><main class="wrap main"><div id="error"></div><div class="stats" id="stats"></div><div class="section-head"><div><h2>Akademik performansa bakış</h2><p>Filtrelere göre anlık güncellenen analizler</p></div></div><div class="all-charts"><div class="panel"><h3> Yıllara göre akademik üretkenlik</h3><div class="chart-area"><canvas id="yearChart"></canvas></div></div><div class="panel"><h3> Faaliyet türlerinin dağılımı</h3><div class="chart-area"><canvas id="typeChart"></canvas></div></div><div class="panel"><h3> Bölümlere göre faaliyet katkısı</h3><div class="chart-area"><canvas id="deptChart"></canvas></div></div><div class="panel"><h3> Makalelerin Q dağılımı</h3><div class="chart-area"><canvas id="qChart"></canvas></div></div>
+ <div class="panel"><h3>Faaliyet türüne göre ulusal / uluslararası dağılım</h3><div class="chart-area"><canvas id="scopeTypeChart"></canvas></div></div>
+ <div class="panel"><h3>Projelerin destek türlerine göre dağılımı</h3><div class="chart-area"><canvas id="projectChart"></canvas></div></div>
+ <div class="panel"><h3>Bildirilerin sunum ve yayın türleri</h3><div class="chart-area"><canvas id="paperChart"></canvas></div></div>
+ <div class="panel"><h3>Patent ve faydalı modeller</h3><p class="chart-hint">Sütunların üzerine gelerek ilgili akademisyenleri görüntüleyin.</p><div class="chart-area"><canvas id="patentChart"></canvas></div><div id="patentDetails" class="patent-details"></div></div>
+<div class="panel collab-chart-card"><h3>Akademik iş birliği ağı</h3><p class="chart-hint">Birlikte çalışma yapan akademisyenler · Ortak faaliyet sayısı</p><div class="collab-pairs" id="collabPairsList"></div><div class="collab-mini-footer" id="collabSummary"></div></div></div><div class="section-head"><div><h2>Akademik faaliyetleri keşfedin</h2><p>Akademisyen, bölüm, yıl, faaliyet ve indeks bazında filtreleme</p></div></div><div class="filters"><div class="filter-grid"><div class="field"><label>BÖLÜM</label><select id="department"></select></div><div class="field"><label>AKADEMİSYEN</label><select id="academic"></select></div><div class="field"><label>YIL</label><select id="year"></select></div><div class="field"><label>FAALİYET TÜRÜ</label><select id="type"></select></div></div><div class="search-row"><div class="field"><label>ÇALIŞMA ADINDA / YAZARDA ARA</label><input id="search" type="search" placeholder="Anahtar kelime veya akademisyen adı yazın…"></div><div class="field" style="max-width:220px"><label>İNDEKS</label><select id="index"></select></div><button class="reset" id="reset">Filtreleri temizle</button></div></div><div class="results-meta"><span id="count"></span><span>En yeni yayınlar önce gösterilir</span></div><div class="results" id="results"></div><div class="pager"><button id="prev">← Önceki</button><span id="page"></span><button id="next">Sonraki →</button></div></main><footer>Bingöl Üniversitesi · Mühendislik ve Mimarlık Fakültesi · Akademik Faaliyet Platformu</footer>
+<script>
+const split=s=>String(s||'').split(';').map(x=>x.trim()).filter(Boolean);const clean=s=>String(s||'').trim();const esc=s=>clean(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));const lower=s=>clean(s).toLocaleLowerCase('tr-TR');const uniq=a=>[...new Set(a.filter(Boolean))];const tally=a=>a.reduce((o,x)=>(o[x]=(o[x]||0)+1,o),{});const sortCounts=a=>Object.entries(tally(a)).sort((a,b)=>b[1]-a[1]||a[0].localeCompare(b[0],'tr'));let records=[],filtered=[],page=1,charts={};const ids=['department','academic','year','type','index','search'];const el=id=>document.getElementById(id);const opts=(id,items,all)=>{let e=el(id),prev=e.value;e.innerHTML='<option value="">'+esc(all)+'</option>'+items.map(([v,label])=>'<option value="'+esc(v)+'">'+esc(label||v)+'</option>').join('');e.value=items.some(([v])=>v===prev)?prev:''};const validLink=s=>{let x=clean(s);if(!x)return '';if(/^10\.\d{4,9}\//.test(x))x='https://doi.org/'+x;if(!/^https?:\/\//i.test(x))return '';try{let u=new URL(x);return ['http:','https:'].includes(u.protocol)?u.href:''}catch{return ''}};
+function normalize(rows){return rows.filter(r=>r&&clean(r[5])).map(r=>({year:Number(r[1])||0,authors:split(r[2]),departments:split(r[3]),type:clean(r[4]),title:clean(r[5]),index:clean(r[6]),q:clean(r[7]).toUpperCase(),scope:clean(r[8]),url:validLink(r[9])})).filter(r=>r.title)}
+function selectLists(){opts('department',sortCounts(records.flatMap(r=>r.departments)).map(([v,n])=>[v,`${v} (${n})`]),'Tüm Fakülte');opts('year',uniq(records.map(r=>r.year)).sort((a,b)=>b-a).map(v=>[String(v),String(v)]),'Tüm Yıllar');opts('type',sortCounts(records.map(r=>r.type)).map(([v,n])=>[v,`${v} (${n})`]),'Tüm Faaliyetler');opts('index',sortCounts(records.map(r=>r.index)).map(([v])=>[v,v]),'Tüm İndeksler');academicList()}
+function academicList(){let base=records.filter(r=>(!el('department').value||r.departments.includes(el('department').value))&&(!el('year').value||String(r.year)===el('year').value)&&(!el('type').value||r.type===el('type').value)&&(!el('index').value||r.index===el('index').value));opts('academic',sortCounts(base.flatMap(r=>r.authors)).map(([v,n])=>[v,`${v} (${n})`]),'Tüm Akademisyenler')}
+function apply(){academicList();const dep=el('department').value,acad=el('academic').value,year=el('year').value,type=el('type').value,index=el('index').value,query=lower(el('search').value);filtered=records.filter(r=>(!dep||r.departments.includes(dep))&&(!acad||r.authors.includes(acad))&&(!year||String(r.year)===year)&&(!type||r.type===type)&&(!index||r.index===index)&&(!query||lower(r.title+' '+r.authors.join(' ')+' '+r.departments.join(' ')).includes(query))).sort((a,b)=>b.year-a.year||a.title.localeCompare(b.title,'tr'));page=1;render()}
+function animateNum(node,n){if(matchMedia('(prefers-reduced-motion: reduce)').matches){node.textContent=n.toLocaleString('tr-TR');return}let start=performance.now();function step(t){let p=Math.min((t-start)/650,1);node.textContent=Math.round(n*(1-(1-p)**3)).toLocaleString('tr-TR');if(p<1)requestAnimationFrame(step)}requestAnimationFrame(step)}
+function renderStats(){
+const countType=t=>filtered.filter(r=>r.type===t).length;
+const countIncludes=t=>filtered.filter(r=>r.type.includes(t)).length;
+const items=[
+['Toplam faaliyet',filtered.length],
+['Makale',countType('Makale')],
+['Bildiri',countType('Bildiri')],
+['Kitap / kitap bölümü',filtered.filter(r=>r.type.includes('Kitap')).length],
+['Proje',countType('Proje')],
+['Akademisyen',uniq(filtered.flatMap(r=>r.authors)).length],
+['Patent / Faydalı Model',filtered.filter(r=>/^(patent|faydalı model)$/i.test(r.type)).length],
+];
+el('stats').innerHTML=items.map(([name,n],i)=>`<div class="stat"><div class="stat-marker"></div><div class="value" id="stat${i}">0</div><div class="name">${name}</div></div>`).join('');
+items.forEach((v,i)=>animateNum(el('stat'+i),v[1]))
+}
+function draw(id,config){
+  if(typeof Chart==='undefined') return;
+  if(charts[id]) charts[id].destroy();
+  charts[id]=new Chart(el(id),config);
+}
+const colors=['#7b2439','#c48b54','#365d76','#8a9b92','#a36c7c','#66879b','#bdad95','#9eabbf'];
+function renderCharts(){
+  const years=uniq(filtered.map(r=>r.year)).filter(Boolean).sort((a,b)=>a-b);
+  const types=sortCounts(filtered.map(r=>r.type));
+  const depts=sortCounts(filtered.flatMap(r=>r.departments)).slice(0,8);
+  const qs=['Q1','Q2','Q3','Q4','Belirtilmemiş'];
+  const articles=filtered.filter(r=>lower(r.type)==='makale');
+  const qcount=qs.map(q=>articles.filter(r=>(r.q||'Belirtilmemiş')===q).length);
+  const base={responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},animation:{duration:900}};
+  const legend={...base,plugins:{legend:{display:true,position:'bottom',labels:{boxWidth:11,font:{size:11}}}}};
+  const burg='#7b2439',gold='#c48b54',blue='#365d76',sage='#8a9b92';
+  const commonY={beginAtZero:true,ticks:{precision:0},grid:{color:'#eef0f1'}};
+  const bar=(id,labels,data,opts={})=>draw(id,{type:'bar',data:{labels,datasets:[{label:opts.label||'Faaliyet',data,backgroundColor:opts.colors||burg,borderRadius:5}]},options:{...base,indexAxis:opts.horizontal?'y':'x',scales:{x:{grid:{display:false}},y:commonY}}});
+  const donut=(id,labels,data)=>draw(id,{type:'doughnut',data:{labels,datasets:[{data,backgroundColor:colors,borderWidth:3,borderColor:'#fff'}]},options:{...legend,cutout:'66%'}});
+  bar('yearChart',years,years.map(y=>filtered.filter(r=>r.year===y).length),{colors:years.map((_,i)=>i===years.length-1?burg:'#b9c8cc')});
+  donut('typeChart',types.map(x=>x[0]),types.map(x=>x[1]));
+  bar('deptChart',depts.map(x=>x[0]),depts.map(x=>x[1]),{horizontal:true,colors:colors});
+  donut('qChart',qs,qcount);
+  const scopes=['Ulusal','Uluslararası'];
+  const scopeOf=r=>lower(r.scope);
+  const scopeCount=(arr,v)=>arr.filter(r=>scopeOf(r)===lower(v)).length;
+  const typenames=['Makale','Bildiri','Kitap Bölümü','Proje','Patent / Faydalı Model'];
+  const typeGroup=r=>/patent|faydalı model/i.test(r.type)?'Patent / Faydalı Model':r.type;
+  draw('scopeTypeChart',{type:'bar',data:{labels:typenames,datasets:scopes.map((scope,i)=>({label:scope,data:typenames.map(t=>scopeCount(filtered.filter(r=>typeGroup(r)===t),scope)),backgroundColor:i?blue:gold,borderRadius:4}))},options:{...legend,indexAxis:'y',scales:{x:{stacked:true,beginAtZero:true,ticks:{precision:0}},y:{stacked:true}}}});
+  const projects=filtered.filter(r=>lower(r.type)==='proje');
+  const projectKinds=sortCounts(projects.map(r=>r.index||'Belirtilmemiş'));
+  bar('projectChart',projectKinds.map(x=>x[0]),projectKinds.map(x=>x[1]),{horizontal:true,colors:projectKinds.map((_,i)=>colors[i%colors.length]),label:'Proje'});
+  const papers=filtered.filter(r=>lower(r.type)==='bildiri');
+  const paperKinds=sortCounts(papers.map(r=>r.index||'Belirtilmemiş'));
+  donut('paperChart',paperKinds.map(x=>x[0]),paperKinds.map(x=>x[1]));
+  const patents=filtered.filter(r=>/^(patent|faydalı model)$/i.test(r.type));
+  const patentTypes=['Patent','Faydalı Model'];
+  const patentNames=patentTypes.map(t=>uniq(patents.filter(r=>lower(r.type)===lower(t)).flatMap(r=>r.authors)));
+  draw('patentChart',{type:'bar',data:{labels:patentTypes,datasets:[{label:'Kayıt sayısı',data:patentTypes.map(t=>patents.filter(r=>lower(r.type)===lower(t)).length),backgroundColor:[burg,gold],borderRadius:7,maxBarThickness:95}]},options:{...base,plugins:{legend:{display:false},tooltip:{callbacks:{afterLabel:ctx=>patentNames[ctx.dataIndex].length?'Akademisyenler: '+patentNames[ctx.dataIndex].join(', '):'Akademisyen bilgisi yok'}}},scales:{y:commonY,x:{grid:{display:false}}},onHover:(evt,els)=>{const node=el('patentDetails');if(!node)return;const names=els.length?patentNames[els[0].index]:[];node.innerHTML=names.map(n=>'<span class="patent-person">'+esc(n)+'</span>').join('')}}});
+  el('patentDetails').innerHTML='';
+}
+function renderCollaboration(){
+ const pairMap=new Map();
+ filtered.forEach(r=>{
+  const authors=[...new Set(r.authors.map(x=>x.trim()).filter(Boolean))].sort((a,b)=>a.localeCompare(b,'tr'));
+  for(let i=0;i<authors.length;i++)for(let j=i+1;j<authors.length;j++){
+   const key=JSON.stringify([authors[i],authors[j]]);
+   if(!pairMap.has(key))pairMap.set(key,{names:[authors[i],authors[j]],count:0,titles:[]});
+   const item=pairMap.get(key);item.count++;item.titles.push(r.title);
+  }
+ });
+ const pairs=[...pairMap.values()].sort((a,b)=>b.count-a.count||a.names.join('').localeCompare(b.names.join(''),'tr'));
+ const max=Math.max(1,...pairs.map(p=>p.count));
+ const target=el('collabPairsList');
+ target.innerHTML=pairs.length?pairs.slice(0,5).map((p,i)=>`<div class="collab-pair" title="${esc(p.titles.slice(0,6).join(' • '))}"><div class="collab-pair-head"><span class="collab-pair-name">${esc(p.names[0])} <span class="collab-connector">&</span> ${esc(p.names[1])}</span><strong>${p.count}</strong></div><div class="collab-pair-track"><div class="collab-pair-fill" style="--bar-width:${(100*p.count/max).toFixed(1)}%;animation-delay:${i*75}ms"></div></div></div>`).join(''):'<p class="collab-empty">Seçili filtrelerde birlikte çalışma yapan iki fakülte akademisyeni bulunmuyor.</p>';
+ el('collabSummary').textContent='';
+}
+function renderResults(){const size=12,total=Math.max(1,Math.ceil(filtered.length/size));page=Math.min(page,total);el('count').textContent=filtered.length.toLocaleString('tr-TR')+' faaliyet bulundu';el('results').innerHTML=filtered.slice((page-1)*size,page*size).map(r=>`<article class="result"><div class="result-head"><h3>${esc(r.title)}</h3>${r.url?`<a class="link" href="${esc(r.url)}" target="_blank" rel="noopener noreferrer" title="Çalışmayı aç" aria-label="Çalışmayı yeni sekmede aç">↗</a>`:''}</div><div class="authors">${esc(r.authors.join(' · '))}<br>${esc(r.departments.join(' · '))}</div><div class="chips"><span class="chip">${r.year||'Yıl yok'}</span><span class="chip">${esc(r.type)}</span>${r.index?`<span class="chip idx">${esc(r.index)}</span>`:''}${r.q?`<span class="chip q">${esc(r.q)}</span>`:''}${r.scope?`<span class="chip">${esc(r.scope)}</span>`:''}</div></article>`).join('')||'<div class="panel">Bu filtrelerle eşleşen faaliyet bulunamadı.</div>';el('page').textContent=page+' / '+total;el('prev').disabled=page===1;el('next').disabled=page===total}function render(){renderStats();renderCharts();renderCollaboration();renderResults()}
+ids.forEach(id=>el(id).addEventListener(id==='search'?'input':'change',()=>apply()));el('reset').onclick=()=>{ids.forEach(id=>el(id).value='');selectLists();apply()};el('prev').onclick=()=>{page--;renderResults();el('results').scrollIntoView({behavior:'smooth',block:'start'})};el('next').onclick=()=>{page++;renderResults();el('results').scrollIntoView({behavior:'smooth',block:'start'})};
+async function load(){
+  const response = await fetch('./MMF_Akademik_Faaliyetler.xlsx?v=' + Date.now(), {cache:'no-store'});
+  if (!response.ok) throw new Error('Excel dosyası bulunamadı (HTTP '+response.status+').');
+  if (typeof XLSX === 'undefined') throw new Error('Excel okuma kütüphanesi yüklenemedi. İnternet bağlantısını kontrol edin.');
+  const workbook = XLSX.read(await response.arrayBuffer(), {type:'array', cellDates:false});
+  const sheet = workbook.Sheets[workbook.SheetNames[0]];
+  if (!sheet) throw new Error('Excel içinde çalışma sayfası bulunamadı.');
+  const all = XLSX.utils.sheet_to_json(sheet, {header:1, defval:'', raw:false});
+  const headers = (all[0] || []).map(v => String(v).trim());
+  if (headers[5] !== 'Çalışma Adı' || headers[2] !== 'Akademisyen' || headers[4] !== 'Faaliyet Türü')
+    throw new Error('Excel sütunları beklenen sırada değil. Orijinal 10 sütunlu şablonu kullanın.');
+  const rows = all.slice(1).filter(r => r && String(r[5] || '').trim());
+  if (!rows.length) throw new Error('Excel içinde faaliyet kaydı bulunamadı.');
+  records=normalize(rows);
+  selectLists();apply();
+  el('error').style.display='none';
+  const status=el('status');
+  if(status) status.textContent='Excel verileri · '+records.length.toLocaleString('tr-TR')+' faaliyet';
+}load().catch(e=>{el('error').style.display='block';el('error').textContent='Veriler yüklenemedi: '+e.message});
+</script></body></html>
