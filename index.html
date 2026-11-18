@@ -225,7 +225,7 @@ function renderCharts(){
   const typeGroup=r=>/patent|faydalı model/i.test(r.type)?'Patent / Faydalı Model':r.type;
   draw('scopeTypeChart',{type:'bar',data:{labels:typenames.map(shortLabel),datasets:scopes.map((scope,i)=>({label:scope,data:typenames.map(t=>scopeCount(filtered.filter(r=>typeGroup(r)===t),scope)),backgroundColor:i?blue:gold,borderRadius:4}))},options:{...legend,indexAxis:'y',scales:{x:{stacked:true,beginAtZero:true,ticks:{precision:0}},y:{stacked:true,ticks:{autoSkip:false,padding:6,font:{size:10,lineHeight:1.2}}}}}});
   const projects=filtered.filter(r=>lower(r.type)==='proje');
-  const projectKinds=sortCounts(projects.map(r=>r.index||'Belirtilmemiş'));
+  const projectKinds=sortCounts(projects.map(r=>r.index||'Belirtilmemiş')).slice(0,5);
   bar('projectChart',projectKinds.map(x=>x[0]),projectKinds.map(x=>x[1]),{horizontal:true,labelWidth:34,colors:projectKinds.map((_,i)=>colors[i%colors.length]),label:'Proje'});
   const papers=filtered.filter(r=>lower(r.type)==='bildiri');
   const paperKinds=sortCounts(papers.map(r=>r.index||'Belirtilmemiş'));
